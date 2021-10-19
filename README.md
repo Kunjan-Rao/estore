@@ -14,7 +14,8 @@ npm run setup
 ```
 
 Go to monogodb application's bin directory. e.g:C:\Program Files\MongoDB\Server\4.2\bin
-Copy tree json files(categories.json, item_info.json, products.json) in the db diretory to the monogodb application's bin directory.
+
+Copy three json files(categories.json, item_info.json, products.json) in the db diretory to the monogodb application's bin directory.
 
 Open the shell.
 
