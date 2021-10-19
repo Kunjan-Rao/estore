@@ -1,0 +1,56 @@
+.mini-cart {
+  visibility: hidden;
+  transition: opacity .3s,visibility .3s, right .4s cubic-bezier(0.01, -0.21, 0.27, 1.55) !important;
+  position: absolute;
+  top: calc(100%);
+  right: calc(-100%);
+  background: #fff;
+  overflow: auto;
+  max-height: 590px;
+}
+
+.mini-cart-open .mini-cart {
+  right: 0;
+  visibility: visible;
+}
+
+.cart-option-name {
+  color: #999;
+}
+
+.cart-quantity {
+  color: #999;
+}
+
+.mini-cart .product-old-price {
+  padding-right: 10px;
+  color: #636363;
+}
+
+.mini-cart .product-new-price {
+  color: #e72b1e;
+}
+
+.mini-cart .product-option {
+  margin-bottom: 15px;
+}
+
+.mini-cart .product-option-name {
+  color: #777;
+}
+
+/*
+Mobile
+*/
+@media screen and (max-width: 768px) {
+  .mini-cart {
+    top: 3.25rem;
+    position: fixed;
+    width: 90%;
+    z-index: 1002;
+    bottom: 0;
+    overflow-y: scroll;
+    font-size: 82%;
+    max-height: none;
+  }
+}
