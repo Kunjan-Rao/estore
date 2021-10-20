@@ -8,6 +8,8 @@ const dbCred = dbUser.length > 0 || dbPass.length > 0 ? `${dbUser}:${dbPass}@` :
 
 const dbUrl = process.env.DB_URL || `mongodb://${dbCred}${dbHost}:${dbPort}/${dbName}`;
 
+const serverURL = `mongodb+srv://testStore:store#1@cluster0.t5ctz.mongodb.net/bella_db?retryWrites=true&w=majority`;
+
 module.exports = {
 	// used by Store (server side)
 	apiBaseUrl: `http://localhost:3001/api/v1`,

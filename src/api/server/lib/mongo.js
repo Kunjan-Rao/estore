@@ -1,6 +1,7 @@
 import winston from 'winston';
 import url from 'url';
 import { MongoClient } from 'mongodb';
+import mongoose from 'mongoose';
 import settings from './settings';
 
 const mongodbConnection = settings.mongodbServerUrl;
@@ -11,7 +12,8 @@ const RECONNECT_INTERVAL = 1000;
 const CONNECT_OPTIONS = {
 	reconnectTries: 3600,
 	reconnectInterval: RECONNECT_INTERVAL,
-	useNewUrlParser: true
+	useNewUrlParser: true,
+	useUnifiedTopology: true,
 };
 
 const onClose = () => {
@@ -25,24 +27,35 @@ const onReconnect = () => {
 export let db = null;
 
 const connectWithRetry = () => {
-	MongoClient.connect(
-		mongodbConnection,
-		CONNECT_OPTIONS,
-		(err, client) => {
-			if (err) {
-				winston.error(
-					`MongoDB connection was failed: ${err.message}`,
-					err.message
-				);
-				setTimeout(connectWithRetry, RECONNECT_INTERVAL);
-			} else {
-				db = client.db(dbName);
-				db.on('close', onClose);
-				db.on('reconnect', onReconnect);
-				winston.info('MongoDB connected successfully');
-			}
-		}
-	);
+	// MongoClient.connect(
+	// 	mongodbConnection,
+	// 	CONNECT_OPTIONS,
+	// 	(err, client) => {
+	// 		if (err) {
+	// 			winston.error(
+	// 				`MongoDB connection was failed: ${err.message}`,
+	// 				err.message
+	// 			);
+	// 			setTimeout(connectWithRetry, RECONNECT_INTERVAL);
+	// 		} else {
+	// 			db = client.db(dbName);
+	// 			db.on('close', onClose);
+	// 			db.on('reconnect', onReconnect);
+	// 			winston.info('MongoDB connected successfully');
+	// 		}
+	// 	}
+	// );
+	mongoose
+		.connect(mongodbConnection, {
+			useNewUrlParser: true,
+			useUnifiedTopology: true,
+		})
+		.then(() => {
+			winston.info('MongoDB connected successfully');
+		})
+		.catch((error) => {
+			winston.error(`MongoDB connection was failed: ${err.message}`, err.message);
+		});
 };
 
 connectWithRetry();

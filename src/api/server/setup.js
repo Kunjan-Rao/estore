@@ -10,6 +10,7 @@ const dbName = mongoPathName.substring(mongoPathName.lastIndexOf('/') + 1);
 
 const CONNECT_OPTIONS = {
 	useNewUrlParser: true,
+	useUnifiedTopology: true,
 };
 
 const DEFAULT_LANGUAGE = 'english';

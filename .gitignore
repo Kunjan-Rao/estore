@@ -8,7 +8,7 @@ public/admin/index.html
 public/content/*
 public/invoices/*
 !public/content/*.md
-theme/dist/*
+theme/dist/*         
 theme/assets/js/app-*
 theme/assets/js/theme-*
 theme/assets/css/bundle-*
